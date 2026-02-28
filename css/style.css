@@ -2029,6 +2029,111 @@ body.dark-mode .header {
     box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
 }
 
+/* Policy Pages Styling */
+.policy-section {
+    padding: 60px 0 80px;
+    background: var(--bg-secondary);
+}
+
+.policy-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.policy-article {
+    background: var(--bg-primary);
+    padding: 40px;
+    margin-bottom: 24px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px var(--shadow);
+    animation: fadeInUp 0.6s ease;
+    border-left: 4px solid var(--primary);
+}
+
+.policy-article h2 {
+    font-size: 24px;
+    color: var(--primary);
+    margin-bottom: 20px;
+    margin-top: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+}
+
+.policy-article h3 {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+.policy-article p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    text-align: justify;
+}
+
+.policy-article ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 16px;
+}
+
+.policy-article ul li {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    padding-left: 0;
+    position: relative;
+}
+
+.policy-article ul li::before {
+    content: '─';
+    color: var(--primary);
+    font-weight: 600;
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.policy-article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.policy-article table th,
+.policy-article table td {
+    padding: 14px;
+    text-align: left;
+    border: 1px solid var(--border);
+}
+
+.policy-article table th {
+    background: var(--bg-secondary);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.policy-article table td {
+    color: var(--text-secondary);
+}
+
+.policy-article table tbody tr:hover {
+    background: var(--bg-secondary);
+}
+
+.policy-article strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.policy-article em {
+    color: var(--accent);
+    font-style: italic;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .listing-layout {

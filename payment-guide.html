@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn thanh toán - NDQ RoomHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-home"></i>
+                    <span>NDQ RoomHub</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html">Trang chủ</a>
+                    <a href="listing.html">Tìm phòng</a>
+                    <a href="post.html">Đăng tin</a>
+                    <a href="dashboard.html">Quản lý tin</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Chuyển đổi chế độ">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn-login" id="loginBtn">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Hướng Dẫn Thanh Toán</h1>
+            <p>Tìm hiểu cách thanh toán một cách an toàn và tiện lợi</p>
+        </div>
+    </section>
+
+    <section class="policy-section">
+        <div class="container">
+            <div class="policy-content">
+                <div class="policy-article">
+                    <h2>1. Dịch vụ miễn phí và có phí</h2>
+                    <p><strong>Dịch vụ miễn phí:</strong></p>
+                    <ul>
+                        <li>Đăng ký tài khoản</li>
+                        <li>Tìm kiếm và xem các bài đăng phòng</li>
+                        <li>Liên hệ với chủ nhà</li>
+                        <li>Đăng tin cho thuê (cơ bản - 60 ngày)</li>
+                    </ul>
+                    <p><strong>Dịch vụ có phí:</strong></p>
+                    <ul>
+                        <li>Nâng cấp tin đăng (Premium - hiển thị hàng đầu)</li>
+                        <li>Quảng cáo bài đăng</li>
+                        <li>Tính năng nâng cao (sắp có)</li>
+                    </ul>
+                </div>
+
+                <div class="policy-article">
+                    <h2>2. Phương thức thanh toán</h2>
+                    <p>NDQ RoomHub hỗ trợ các phương thức thanh toán sau:</p>
+                    <ul>
+                        <li><i class="fas fa-credit-card"></i> <strong>Thẻ tín dụng:</strong> Visa, Mastercard, JCB</li>
+                        <li><i class="fas fa-mobile-alt"></i> <strong>Ví điện tử:</strong> Momo, ZaloPay, PayPal</li>
+                        <li><i class="fas fa-building"></i> <strong>Chuyển khoản ngân hàng:</strong> ATM, Online Banking</li>
+                        <li><i class="fas fa-qrcode"></i> <strong>QR Code:</strong> Thanh toán nhanh qua mã QR</li>
+                    </ul>
+                </div>
+
+                <div class="policy-article">
+                    <h2>3. Giá dịch vụ</h2>
+                    <table style="width: 100%; margin: 20px 0;">
+                        <tr style="background: var(--bg-secondary); border: 1px solid var(--border);">
+                            <th style="padding: 15px; text-align: left; border: 1px solid var(--border);">Dịch vụ</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid var(--border);">Giá tiền</th>
+                            <th style="padding: 15px; text-align: left; border: 1px solid var(--border);">Thời hạn</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px; border: 1px solid var(--border);">Tin đăng cơ bản</td>
+                            <td style="padding: 12px; text-align: center; border: 1px solid var(--border);">Miễn phí</td>
+                            <td style="padding: 12px; border: 1px solid var(--border);">60 ngày</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px; border: 1px solid var(--border);">Nâng cấp Premium (Vàng)</td>
+                            <td style="padding: 12px; text-align: center; border: 1px solid var(--border);">49.000đ</td>
+                            <td style="padding: 12px; border: 1px solid var(--border);">30 ngày</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px; border: 1px solid var(--border);">Nâng cấp Premium (Bạc)</td>
+                            <td style="padding: 12px; text-align: center; border: 1px solid var(--border);">79.000đ</td>
+                            <td style="padding: 12px; border: 1px solid var(--border);">30 ngày</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px; border: 1px solid var(--border);">Nâng cấp Premium (Vàng Kim)</td>
+                            <td style="padding: 12px; text-align: center; border: 1px solid var(--border);">149.000đ</td>
+                            <td style="padding: 12px; border: 1px solid var(--border);">30 ngày</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="policy-article">
+                    <h2>4. Cách thanh toán từng bước</h2>
+                    <h3>Bước 1: Chọn dịch vụ</h3>
+                    <p>Truy cập dashboard, chọn bài đăng cần nâng cấp và nhấn "Nâng cấp"</p>
+                    
+                    <h3>Bước 2: Chọn gói thanh toán</h3>
+                    <p>Lựa chọn gói dịch vụ phù hợp với nhu cầu của bạn</p>
+                    
+                    <h3>Bước 3: Chọn phương thức thanh toán</h3>
+                    <p>Chọn từ danh sách các phương thức thanh toán có sẵn</p>
+                    
+                    <h3>Bước 4: Nhập thông tin</h3>
+                    <p>Điền đầy đủ thông tin thanh toán (số thẻ, email, v.v.)</p>
+                    
+                    <h3>Bước 5: Xác nhận</h3>
+                    <p>Xác nhận giao dịch và chờ xử lý (thường từ 1-5 phút)</p>
+                </div>
+
+                <div class="policy-article">
+                    <h2>5. Bảo mật thanh toán</h2>
+                    <p>Chúng tôi cam kết bảo mật thông tin thanh toán của bạn:</p>
+                    <ul>
+                        <li><strong>Mã hóa SSL/TLS:</strong> Tất cả giao dịch được mã hóa</li>
+                        <li><strong>PCI DSS Compliant:</strong> Đạt tiêu chuẩn bảo mật quốc tế</li>
+                        <li><strong>Không lưu thông tin thẻ:</strong> Chúng tôi không lưu chi tiết thẻ tín dụng</li>
+                        <li><strong>Xác thực OTP:</strong> Bảo vệ bằng mã OTP cho mỗi giao dịch</li>
+                    </ul>
+                </div>
+
+                <div class="policy-article">
+                    <h2>6. Hoàn tiền và chính sách hủy</h2>
+                    <ul>
+                        <li>Bạn có thể yêu cầu hoàn tiền trong vòng 7 ngày kể từ ngày thanh toán</li>
+                        <li>Yêu cầu hoàn tiền phải kèm theo lý do rõ ràng</li>
+                        <li>Tiền hoàn sẽ được trả lại trong vòng 3-5 ngày làm việc</li>
+                        <li>Nếu dung lượng "nâng cấp" đã hết hạn, không hỗ trợ hoàn tiền</li>
+                    </ul>
+                </div>
+
+                <div class="policy-article">
+                    <h2>7. Thông báo giao dịch</h2>
+                    <p>Sau mỗi giao dịch thành công, bạn sẽ nhận được:</p>
+                    <ul>
+                        <li>Email xác nhận giao dịch</li>
+                        <li>Hóa đơn điện tử (có thể tải xuống)</li>
+                        <li>Thông báo trên tài khoản NDQ RoomHub</li>
+                    </ul>
+                </div>
+
+                <div class="policy-article">
+                    <h2>8. Xử lý các vấn đề thanh toán</h2>
+                    <p><strong>Nếu ghi nhận bị trói:</strong></p>
+                    <ul>
+                        <li>Kiểm tra email hoặc SMS từ ngân hàng</li>
+                        <li>Liên hệ với ngân hàng để xác nhận giao dịch</li>
+                        <li>Liên hệ với chúng tôi nếu vấn đề vẫn tiếp diễn</li>
+                    </ul>
+                    <p><strong>Nếu giao dịch bị từ chối:</strong></p>
+                    <ul>
+                        <li>Kiểm tra số dư tài khoản</li>
+                        <li>Xác nhận thẻ không bị khóa hoặc quá hạn</li>
+                        <li>Thử sử dụng thẻ/phương thức khác</li>
+                        <li>Liên hệ với ngân hàng hoặc nhà cung cấp ví</li>
+                    </ul>
+                </div>
+
+                <div class="policy-article">
+                    <h2>9. Hóa đơn và thống kê</h2>
+                    <p>Bạn có thể:</p>
+                    <ul>
+                        <li>Xem lịch sử giao dịch trong dashboard</li>
+                        <li>Tải xuống hóa đơn dưới dạng PDF</li>
+                        <li>Lập báo cáo tổng chi tiêu hàng tháng</li>
+                        <li>Yêu cầu hóa đơn HĐKD chính thức (nếu cần)</li>
+                    </ul>
+                </div>
+
+                <div class="policy-article">
+                    <h2>10. Liên hệ hỗ trợ thanh toán</h2>
+                    <p>Nếu có vấn đề về thanh toán, vui lòng liên hệ:</p>
+                    <ul>
+                        <li><strong>Email:</strong> sssquang992@gmail.com</li>
+                        <li><strong>Điện thoại:</strong> 0377 487 457 (7h-22h, hàng ngày)</li>
+                        <li><strong>Live Chat:</strong> Trả lời trong vòng 2 giờ</li>
+                        <li><strong>Zalo:</strong> 0377 487 457</li>
+                    </ul>
+                </div>
+
+                <div class="policy-article">
+                    <h2>⚠️ Lưu ý quan trọng</h2>
+                    <ul>
+                        <li>Không bao giờ chia sẻ mã OTP hoặc thông tin thẻ với ai</li>
+                        <li>Kiểm tra URL trước khi nhập thông tin</li>
+                        <li>Sử dụng kết nối Internet an toàn (không dùng WiFi công cộng)</li>
+                        <li>Đăng xuất sau khi hoàn tất giao dịch</li>
+                    </ul>
+                </div>
+
+                <div class="policy-article">
+                    <p><strong>Cập nhật lần cuối:</strong> 28/02/2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Về NDQ RoomHub</h4>
+                    <p>Nền tảng tìm kiếm phòng trọ, chung cư, homestay hàng đầu với hàng nghìn bài đăng và thông tin chi tiết.</p>
+                    <div class="social-links">
+                        <a href="https://nguyen-ducquang.github.io/newprofile/" target="_blank"><i class="fas fa-globe"></i></a>
+                        <a href="https://www.facebook.com/gnauq.notwang16" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/_dukwanxg/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="listing.html">Tìm phòng</a></li>
+                        <li><a href="post.html">Đăng tin</a></li>
+                        <li><a href="#">Về chúng tôi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="terms.html">Điều khoản sử dụng</a></li>
+                        <li><a href="privacy.html">Chính sách bảo mật</a></li>
+                        <li><a href="posting-rules.html">Quy định đăng tin</a></li>
+                        <li><a href="payment-guide.html">Hướng dẫn thanh toán</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 0377 487 457</li>
+                        <li><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NDQ RoomHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        // Login button
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+
+        // Update auth UI
+        updateAuthUI();
+    </script>
+</body>
+</html>
