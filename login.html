@@ -12,10 +12,9 @@
     <div class="login-container">
         <div class="login-box">
             <div class="login-header">
-                <div class="logo">
-                    <i class="fas fa-home"></i>
-                    <span>NDQ RoomHub</span>
-                </div>
+                <a href="index.html" class="logo">
+                    <img src="img/logo.png" alt="NDQ RoomHub Logo">
+                </a>
                 <p>Chào mừng bạn trở lại</p>
             </div>
 
@@ -138,10 +137,6 @@
                 <a href="index.html"><i class="fas fa-arrow-left"></i> Trở về trang chủ</a>
             </div>
         </div>
-
-        <div class="theme-toggle-login" id="themeToggle">
-            <i class="fas fa-moon"></i>
-        </div>
     </div>
 
     <!-- Social Login Modal -->
@@ -177,194 +172,187 @@
     <script src="js/data.js"></script>
     <script src="js/auth.js"></script>
     <script>
-        // Theme toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        
-        if (currentTheme === 'dark') {
-            body.classList.add('dark-mode');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-            localStorage.setItem('theme', theme);
-            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply theme from localStorage (synced with other pages)
+            const body = document.body;
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            
+            if (currentTheme === 'dark') {
+                body.classList.add('dark-mode');
+            }
 
-        // Tab switching
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
+            // Tab switching
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
 
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tab = btn.dataset.tab;
-                
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                btn.classList.add('active');
-                document.getElementById(tab).classList.add('active');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tab = btn.dataset.tab;
+                    
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    btn.classList.add('active');
+                    document.getElementById(tab).classList.add('active');
+                });
             });
-        });
 
-        // Login form
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            // Simple validation (in real app, you'd check against a database)
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find(u => u.email === email && u.password === password);
-            
-            if (user) {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                alert('Đăng nhập thành công!');
-                window.location.href = 'index.html';
-            } else {
-                alert('Email hoặc mật khẩu không đúng!');
-            }
-        });
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                // Simple validation (in real app, you'd check against a database)
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    alert('Đăng nhập thành công!');
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Email hoặc mật khẩu không đúng!');
+                }
+            });
 
-        // Register form
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
-            const phone = document.getElementById('registerPhone').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('registerConfirmPassword').value;
-            const role = document.querySelector('input[name="role"]:checked').value;
-            
-            if (password !== confirmPassword) {
-                alert('Mật khẩu không khớp!');
-                return;
-            }
-            
-            // Save user
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            
-            // Check if email exists
-            if (users.find(u => u.email === email)) {
-                alert('Email đã tồn tại!');
-                return;
-            }
-            
-            const newUser = {
-                id: Date.now(),
-                name,
-                email,
-                phone,
-                password,
-                role,
-                createdAt: new Date().toISOString()
-            };
-            
-            users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
-            localStorage.setItem('currentUser', JSON.stringify(newUser));
-            
-            alert('Đăng ký thành công!');
-            window.location.href = 'index.html';
-        });
-
-        // Social login handlers
-        const googleBtn = document.querySelector('.social-btn.google');
-        const facebookBtn = document.querySelector('.social-btn.facebook');
-        const socialModal = document.getElementById('socialLoginModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalIcon = document.getElementById('modalIcon');
-        const modalMessage = document.getElementById('modalMessage');
-        const socialEmail = document.getElementById('socialEmail');
-        const socialName = document.getElementById('socialName');
-        const confirmBtn = document.getElementById('confirmSocialLogin');
-
-        let currentProvider = '';
-
-        // Function to open social login modal
-        function openSocialModal(provider) {
-            currentProvider = provider;
-            
-            if (provider === 'google') {
-                modalTitle.textContent = 'Đăng nhập với Google';
-                modalIcon.innerHTML = '<i class="fab fa-google"></i>';
-                modalIcon.style.background = 'linear-gradient(135deg, #ea4335 0%, #fbbc05 100%)';
-                modalMessage.textContent = 'Bạn đang đăng nhập bằng tài khoản Google';
-                socialEmail.value = 'user@gmail.com';
-                socialName.value = 'Người dùng Google';
-            } else if (provider === 'facebook') {
-                modalTitle.textContent = 'Đăng nhập với Facebook';
-                modalIcon.innerHTML = '<i class="fab fa-facebook"></i>';
-                modalIcon.style.background = 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)';
-                modalMessage.textContent = 'Bạn đang đăng nhập bằng tài khoản Facebook';
-                socialEmail.value = 'user@facebook.com';
-                socialName.value = 'Người dùng Facebook';
-            }
-            
-            socialModal.style.display = 'flex';
-            setTimeout(() => {
-                socialModal.classList.add('active');
-            }, 10);
-        }
-
-        // Function to close social login modal
-        function closeSocialModal() {
-            socialModal.classList.remove('active');
-            setTimeout(() => {
-                socialModal.style.display = 'none';
-            }, 300);
-        }
-
-        // Google login
-        googleBtn.addEventListener('click', function() {
-            openSocialModal('google');
-        });
-
-        // Facebook login
-        facebookBtn.addEventListener('click', function() {
-            openSocialModal('facebook');
-        });
-
-        // Confirm social login
-        confirmBtn.addEventListener('click', function() {
-            const userName = socialName.value || 'Người dùng';
-            const userEmail = socialEmail.value;
-            
-            const socialUser = {
-                id: Date.now(),
-                name: userName,
-                email: userEmail,
-                provider: currentProvider,
-                role: 'tenant',
-                createdAt: new Date().toISOString()
-            };
-            
-            localStorage.setItem('currentUser', JSON.stringify(socialUser));
-            
-            // Optional: Save to users list
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            if (!users.find(u => u.email === socialUser.email && u.provider === currentProvider)) {
-                users.push(socialUser);
+            // Register form
+            document.getElementById('registerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const phone = document.getElementById('registerPhone').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('registerConfirmPassword').value;
+                const role = document.querySelector('input[name="role"]:checked').value;
+                
+                if (password !== confirmPassword) {
+                    alert('Mật khẩu không khớp!');
+                    return;
+                }
+                
+                // Save user
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                
+                // Check if email exists
+                if (users.find(u => u.email === email)) {
+                    alert('Email đã tồn tại!');
+                    return;
+                }
+                
+                const newUser = {
+                    id: Date.now(),
+                    name,
+                    email,
+                    phone,
+                    password,
+                    role,
+                    createdAt: new Date().toISOString()
+                };
+                
+                users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
-            }
-            
-            closeSocialModal();
-            
-            alert(`Đăng nhập bằng ${currentProvider === 'google' ? 'Google' : 'Facebook'} thành công!`);
-            window.location.href = 'index.html';
-        });
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                
+                alert('Đăng ký thành công!');
+                window.location.href = 'index.html';
+            });
 
-        // Close modal when clicking outside
-        socialModal.addEventListener('click', function(e) {
-            if (e.target === socialModal) {
-                closeSocialModal();
+            // Social login handlers
+            const googleBtn = document.querySelector('.social-btn.google');
+            const facebookBtn = document.querySelector('.social-btn.facebook');
+            const socialModal = document.getElementById('socialLoginModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalMessage = document.getElementById('modalMessage');
+            const socialEmail = document.getElementById('socialEmail');
+            const socialName = document.getElementById('socialName');
+            const confirmBtn = document.getElementById('confirmSocialLogin');
+
+            let currentProvider = '';
+
+            // Function to open social login modal
+            function openSocialModal(provider) {
+                currentProvider = provider;
+                
+                if (provider === 'google') {
+                    modalTitle.textContent = 'Đăng nhập với Google';
+                    modalIcon.innerHTML = '<i class="fab fa-google"></i>';
+                    modalIcon.style.background = 'linear-gradient(135deg, #ea4335 0%, #fbbc05 100%)';
+                    modalMessage.textContent = 'Bạn đang đăng nhập bằng tài khoản Google';
+                    socialEmail.value = 'user@gmail.com';
+                    socialName.value = 'Người dùng Google';
+                } else if (provider === 'facebook') {
+                    modalTitle.textContent = 'Đăng nhập với Facebook';
+                    modalIcon.innerHTML = '<i class="fab fa-facebook"></i>';
+                    modalIcon.style.background = 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)';
+                    modalMessage.textContent = 'Bạn đang đăng nhập bằng tài khoản Facebook';
+                    socialEmail.value = 'user@facebook.com';
+                    socialName.value = 'Người dùng Facebook';
+                }
+                
+                socialModal.style.display = 'flex';
+                setTimeout(() => {
+                    socialModal.classList.add('active');
+                }, 10);
             }
-        });
+
+            // Function to close social login modal
+            function closeSocialModal() {
+                socialModal.classList.remove('active');
+                setTimeout(() => {
+                    socialModal.style.display = 'none';
+                }, 300);
+            }
+
+            // Google login
+            googleBtn.addEventListener('click', function() {
+                openSocialModal('google');
+            });
+
+            // Facebook login
+            facebookBtn.addEventListener('click', function() {
+                openSocialModal('facebook');
+            });
+
+            // Confirm social login
+            confirmBtn.addEventListener('click', function() {
+                const userName = socialName.value || 'Người dùng';
+                const userEmail = socialEmail.value;
+                
+                const socialUser = {
+                    id: Date.now(),
+                    name: userName,
+                    email: userEmail,
+                    provider: currentProvider,
+                    role: 'tenant',
+                    createdAt: new Date().toISOString()
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(socialUser));
+                
+                // Optional: Save to users list
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                if (!users.find(u => u.email === socialUser.email && u.provider === currentProvider)) {
+                    users.push(socialUser);
+                    localStorage.setItem('users', JSON.stringify(users));
+                }
+                
+                closeSocialModal();
+                
+                alert(`Đăng nhập bằng ${currentProvider === 'google' ? 'Google' : 'Facebook'} thành công!`);
+                window.location.href = 'index.html';
+            });
+
+            // Close modal when clicking outside
+            socialModal.addEventListener('click', function(e) {
+                if (e.target === socialModal) {
+                    closeSocialModal();
+                }
+            });
+        }); // End of DOMContentLoaded
     </script>
 </body>
 </html>
