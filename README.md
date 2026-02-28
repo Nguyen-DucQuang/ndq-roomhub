@@ -344,15 +344,6 @@ Dữ liệu được lưu trong `js/data.js` và có thể dễ dàng chỉnh s�
 - [Unsplash](https://unsplash.com) - Stock Images
 - [Modern CSS](https://web.dev) - CSS technologies & best practices
 
-## 📞 Hỗ trợ & Đóng góp
-
-Nếu bạn có câu hỏi hoặc muốn đóng góp:
-1. Fork project
-2. Tạo branch feature (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Mở Pull Request
-
 ---
 
 <p align="center">Made with ❤️ by Nguyễn Đức Quang</p>
