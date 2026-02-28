@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDQ RoomHub - Tìm phòng trọ ưng ý</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-home"></i>
+                    <span>NDQ RoomHub</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="active">Trang chủ</a>
+                    <a href="listing.html">Tìm phòng</a>
+                    <a href="post.html">Đăng tin</a>
+                    <a href="dashboard.html">Quản lý tin</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Chuyển đổi chế độ">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn-login" id="loginBtn">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="banner">
+        <div class="container">
+            <div class="banner-content">
+                <h1 class="banner-title">Tìm Phòng Trọ Lý Tưởng</h1>
+                <p class="banner-subtitle">Hàng nghìn phòng trọ, chung cư, homestay đang chờ bạn khám phá</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="search-box">
+        <div class="container">
+            <div class="search-card">
+                <div class="search-form">
+                    <div class="search-field">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <select id="searchArea">
+                            <option value="">Chọn khu vực</option>
+                            <option value="Quận 1">Quận 1</option>
+                            <option value="Quận 2">Quận 2</option>
+                            <option value="Quận 3">Quận 3</option>
+                            <option value="Quận 4">Quận 4</option>
+                            <option value="Quận 5">Quận 5</option>
+                            <option value="Quận 7">Quận 7</option>
+                            <option value="Quận 10">Quận 10</option>
+                            <option value="Bình Thạnh">Bình Thạnh</option>
+                            <option value="Thủ Đức">Thủ Đức</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <i class="fas fa-building"></i>
+                        <select id="searchType">
+                            <option value="">Loại hình</option>
+                            <option value="Nhà trọ">Nhà trọ</option>
+                            <option value="Chung cư">Chung cư</option>
+                            <option value="Khách sạn">Khách sạn</option>
+                            <option value="Homestay">Homestay</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <i class="fas fa-dollar-sign"></i>
+                        <select id="searchPrice">
+                            <option value="">Mức giá</option>
+                            <option value="0-2">Dưới 2 triệu</option>
+                            <option value="2-4">2-4 triệu</option>
+                            <option value="4-6">4-6 triệu</option>
+                            <option value="6-10">6-10 triệu</option>
+                            <option value="10-100">Trên 10 triệu</option>
+                        </select>
+                    </div>
+                    <button class="btn-search" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                        Tìm kiếm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Danh Mục Cho Thuê</h2>
+            <div class="category-grid">
+                <div class="category-card" data-type="Nhà trọ">
+                    <div class="category-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3>Nhà trọ</h3>
+                    <p class="category-count">234 phòng</p>
+                </div>
+                <div class="category-card" data-type="Chung cư">
+                    <div class="category-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Chung cư</h3>
+                    <p class="category-count">156 phòng</p>
+                </div>
+                <div class="category-card" data-type="Khách sạn">
+                    <div class="category-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>Khách sạn</h3>
+                    <p class="category-count">89 phòng</p>
+                </div>
+                <div class="category-card" data-type="Homestay">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Homestay</h3>
+                    <p class="category-count">67 phòng</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-posts">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tin Đăng Nổi Bật</h2>
+                <a href="listing.html" class="view-all">Xem tất cả <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="room-grid" id="featuredRooms">
+                <!-- Sẽ được load bằng JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Về RoomHub</h2>
+                    <p>RoomHub là nền tảng cho thuê phòng trọ, chung cư, homestay hàng đầu tại Việt Nam. Chúng tôi kết nối người có nhu cầu thuê phòng với chủ nhà một cách nhanh chóng, an toàn và tiện lợi.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Phòng cho thuê</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Chủ nhà</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2000+</div>
+                            <div class="stat-label">Khách hàng</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>An toàn & Bảo mật</h4>
+                            <p>Thông tin được bảo mật tuyệt đối</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Đã kiểm duyệt</h4>
+                            <p>Tất cả tin đăng được xác thực</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <h4>Hỗ trợ 24/7</h4>
+                            <p>Luôn sẵn sàng hỗ trợ bạn</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fas fa-home"></i>
+                        <span>NDQ RoomHub</span>
+                    </div>
+                    <p>Nền tảng cho thuê phòng trọ hàng đầu Việt Nam</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="listing.html">Tìm phòng</a></li>
+                        <li><a href="post.html">Đăng tin</a></li>
+                        <li><a href="#">Về chúng tôi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Quy định đăng tin</a></li>
+                        <li><a href="#">Hướng dẫn thanh toán</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 0377 487 457</li>
+                        <li><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NDQ RoomHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách phòng -  NDQ RoomHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-home"></i>
+                    <span>NDQ RoomHub</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html">Trang chủ</a>
+                    <a href="listing.html" class="active">Tìm phòng</a>
+                    <a href="post.html">Đăng tin</a>
+                    <a href="dashboard.html">Quản lý tin</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Chuyển đổi chế độ">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn-login" id="loginBtn">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Tìm Phòng Cho Thuê</h1>
+            <p>Khám phá hàng nghìn phòng trọ phù hợp với nhu cầu của bạn</p>
+        </div>
+    </section>
+
+    <section class="listing-section">
+        <div class="container">
+            <div class="listing-layout">
+                <aside class="filter-sidebar">
+                    <div class="filter-card">
+                        <h3>Bộ lọc tìm kiếm</h3>
+                        
+                        <div class="filter-group">
+                            <label>Khu vực</label>
+                            <select id="filterArea">
+                                <option value="">Tất cả khu vực</option>
+                                <option value="Quận 1">Quận 1</option>
+                                <option value="Quận 2">Quận 2</option>
+                                <option value="Quận 3">Quận 3</option>
+                                <option value="Quận 4">Quận 4</option>
+                                <option value="Quận 5">Quận 5</option>
+                                <option value="Quận 7">Quận 7</option>
+                                <option value="Quận 10">Quận 10</option>
+                                <option value="Bình Thạnh">Bình Thạnh</option>
+                                <option value="Thủ Đức">Thủ Đức</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Loại hình</label>
+                            <select id="filterType">
+                                <option value="">Tất cả loại hình</option>
+                                <option value="Nhà trọ">Nhà trọ</option>
+                                <option value="Chung cư">Chung cư</option>
+                                <option value="Khách sạn">Khách sạn</option>
+                                <option value="Homestay">Homestay</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Mức giá</label>
+                            <select id="filterPrice">
+                                <option value="">Tất cả mức giá</option>
+                                <option value="0-2">Dưới 2 triệu</option>
+                                <option value="2-4">2-4 triệu</option>
+                                <option value="4-6">4-6 triệu</option>
+                                <option value="6-10">6-10 triệu</option>
+                                <option value="10-100">Trên 10 triệu</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Diện tích (m²)</label>
+                            <input type="number" id="filterArea" placeholder="Diện tích tối thiểu" min="0">
+                        </div>
+
+                        <button class="btn-filter" id="applyFilter">
+                            <i class="fas fa-filter"></i> Áp dụng bộ lọc
+                        </button>
+                        <button class="btn-reset" id="resetFilter">
+                            <i class="fas fa-redo"></i> Đặt lại
+                        </button>
+                    </div>
+                </aside>
+
+                <div class="listing-main">
+                    <div class="listing-toolbar">
+                        <div class="result-count">
+                            Tìm thấy <strong id="resultCount">0</strong> phòng
+                        </div>
+                        <div class="sort-controls">
+                            <label>Sắp xếp:</label>
+                            <select id="sortBy">
+                                <option value="newest">Mới nhất</option>
+                                <option value="price-asc">Giá thấp - cao</option>
+                                <option value="price-desc">Giá cao - thấp</option>
+                                <option value="area-asc">Diện tích tăng dần</option>
+                                <option value="area-desc">Diện tích giảm dần</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="room-list" id="roomList">
+                        <!-- Rooms will be loaded here by JS -->
+                    </div>
+
+                    <div class="pagination" id="pagination">
+                        <!-- Pagination will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fas fa-home"></i>
+                        <span>NDQ RoomHub</span>
+                    </div>
+                    <p>Nền tảng cho thuê phòng trọ hàng đầu Việt Nam</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="listing.html">Tìm phòng</a></li>
+                        <li><a href="post.html">Đăng tin</a></li>
+                        <li><a href="#">Về chúng tôi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Quy định đăng tin</a></li>
+                        <li><a href="#">Hướng dẫn thanh toán</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 0377 487 457</li>
+                        <li><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NDQ RoomHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

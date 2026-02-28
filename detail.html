@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết phòng - NDQ RoomHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-home"></i>
+                    <span>NDQ RoomHub</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html">Trang chủ</a>
+                    <a href="listing.html">Tìm phòng</a>
+                    <a href="post.html">Đăng tin</a>
+                    <a href="dashboard.html">Quản lý tin</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Chuyển đổi chế độ">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn-login" id="loginBtn">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="detail-section">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Trang chủ</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="listing.html">Tìm phòng</a>
+                <i class="fas fa-chevron-right"></i>
+                <span id="breadcrumbTitle">Chi tiết</span>
+            </div>
+
+            <div class="detail-content">
+                <div class="detail-main">
+                    <div class="room-gallery" id="roomGallery">
+                        <!-- Gallery will be loaded by JS -->
+                    </div>
+
+                    <div class="room-info-card">
+                        <div class="room-header">
+                            <h1 id="roomTitle">Đang tải...</h1>
+                            <button class="btn-favorite" id="favoriteBtn" title="Lưu tin">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="room-meta">
+                            <span class="room-price" id="roomPrice">0đ</span>
+                            <span class="room-type" id="roomType">-</span>
+                        </div>
+
+                        <div class="room-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-expand"></i>
+                                <span id="roomArea">- m²</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="roomLocation">-</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-calendar"></i>
+                                <span id="roomDate">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="room-description-card">
+                        <h2>Mô tả chi tiết</h2>
+                        <div id="roomDescription" class="description-content">
+                            Đang tải...
+                        </div>
+                    </div>
+
+                    <div class="amenities-card">
+                        <h2>Tiện ích</h2>
+                        <div class="amenities-grid" id="amenitiesList">
+                            <!-- Amenities will be loaded by JS -->
+                        </div>
+                    </div>
+
+                    <div class="map-card">
+                        <h2>Vị trí</h2>
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <p id="mapLocation">Đang tải...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="detail-sidebar">
+                    <div class="contact-card">
+                        <h3>Thông tin liên hệ</h3>
+                        <div class="owner-info">
+                            <div class="owner-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="owner-details">
+                                <h4 id="ownerName">Chủ nhà</h4>
+                                <p id="ownerPhone">0123456789</p>
+                            </div>
+                        </div>
+                        <button class="btn-contact">
+                            <i class="fas fa-phone"></i>
+                            Liên hệ ngay
+                        </button>
+                        <button class="btn-message">
+                            <i class="fas fa-comment"></i>
+                            Nhắn tin
+                        </button>
+                    </div>
+
+                    <div class="safety-card">
+                        <h3>Lưu ý an toàn</h3>
+                        <ul class="safety-list">
+                            <li><i class="fas fa-check-circle"></i> Kiểm tra phòng trước khi thuê</li>
+                            <li><i class="fas fa-check-circle"></i> Không chuyển tiền trước</li>
+                            <li><i class="fas fa-check-circle"></i> Kiểm tra giấy tờ chủ nhà</li>
+                            <li><i class="fas fa-check-circle"></i> Ký hợp đồng rõ ràng</li>
+                        </ul>
+                    </div>
+
+                    <div class="report-card">
+                        <button class="btn-report">
+                            <i class="fas fa-flag"></i>
+                            Báo cáo tin đăng
+                        </button>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 NDQ RoomHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Load room detail
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomId = urlParams.get('id');
+
+        if (roomId) {
+            const room = roomsData.find(r => r.id == roomId);
+            if (room) {
+                // Update page content
+                document.getElementById('breadcrumbTitle').textContent = room.title;
+                document.getElementById('roomTitle').textContent = room.title;
+                document.getElementById('roomPrice').textContent = room.price.toLocaleString('vi-VN') + 'đ/tháng';
+                document.getElementById('roomType').textContent = room.type;
+                document.getElementById('roomArea').textContent = room.area + ' m²';
+                document.getElementById('roomLocation').textContent = room.location;
+                document.getElementById('roomDate').textContent = new Date(room.date).toLocaleDateString('vi-VN');
+                document.getElementById('roomDescription').textContent = room.description;
+                document.getElementById('mapLocation').textContent = room.location;
+                document.getElementById('ownerName').textContent = room.owner || 'Chủ nhà';
+                document.getElementById('ownerPhone').textContent = room.phone || '0123456789';
+
+                // Load gallery
+                const gallery = document.getElementById('roomGallery');
+                const mainImage = document.createElement('div');
+                mainImage.className = 'main-image';
+                mainImage.innerHTML = `<img src="${room.image}" alt="${room.title}">`;
+                gallery.appendChild(mainImage);
+
+                // Load amenities
+                const amenitiesList = document.getElementById('amenitiesList');
+                room.amenities.forEach(amenity => {
+                    const amenityItem = document.createElement('div');
+                    amenityItem.className = 'amenity-item';
+                    amenityItem.innerHTML = `
+                        <i class="fas fa-check"></i>
+                        <span>${amenity}</span>
+                    `;
+                    amenitiesList.appendChild(amenityItem);
+                });
+
+                // Check if favorited
+                const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                if (favorites.includes(roomId)) {
+                    document.getElementById('favoriteBtn').innerHTML = '<i class="fas fa-heart"></i>';
+                }
+            } else {
+                alert('Không tìm thấy phòng!');
+                window.location.href = 'listing.html';
+            }
+        } else {
+            alert('Thiếu ID phòng!');
+            window.location.href = 'listing.html';
+        }
+
+        // Favorite button
+        document.getElementById('favoriteBtn').addEventListener('click', function() {
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const index = favorites.indexOf(roomId);
+            
+            if (index > -1) {
+                favorites.splice(index, 1);
+                this.innerHTML = '<i class="far fa-heart"></i>';
+            } else {
+                favorites.push(roomId);
+                this.innerHTML = '<i class="fas fa-heart"></i>';
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        // Login button
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

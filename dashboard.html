@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý tin - NDQ RoomHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-home"></i>
+                    <span>NDQ RoomHub</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html">Trang chủ</a>
+                    <a href="listing.html">Tìm phòng</a>
+                    <a href="post.html">Đăng tin</a>
+                    <a href="dashboard.html" class="active">Quản lý tin</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Chuyển đổi chế độ">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn-login" id="loginBtn">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Quản Lý Tin Đăng</h1>
+            <p>Quản lý và theo dõi các tin đăng của bạn</p>
+        </div>
+    </section>
+
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-file-alt"></i>
+                    <div>
+                        <h3 id="totalPosts">0</h3>
+                        <p>Tổng tin đăng</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-eye"></i>
+                    <div>
+                        <h3 id="totalViews">0</h3>
+                        <p>Lượt xem</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-heart"></i>
+                    <div>
+                        <h3 id="totalFavorites">0</h3>
+                        <p>Lượt yêu thích</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-toolbar">
+                <h2>Tin đăng của bạn</h2>
+                <a href="post.html" class="btn-new-post">
+                    <i class="fas fa-plus"></i> Đăng tin mới
+                </a>
+            </div>
+
+            <div class="dashboard-list" id="dashboardList">
+                <!-- Posts will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 NDQ RoomHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        // Login button
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+
+        // Load user posts
+        function loadDashboard() {
+            const myPosts = JSON.parse(localStorage.getItem('myPosts') || '[]');
+            const dashboardList = document.getElementById('dashboardList');
+
+            if (myPosts.length === 0) {
+                dashboardList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <h3>Chưa có tin đăng nào</h3>
+                        <p>Bắt đầu đăng tin để cho thuê phòng của bạn</p>
+                        <a href="post.html" class="btn-primary">Đăng tin ngay</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Update stats
+            document.getElementById('totalPosts').textContent = myPosts.length;
+            const totalViews = myPosts.reduce((sum, post) => sum + (post.views || 0), 0);
+            document.getElementById('totalViews').textContent = totalViews;
+            document.getElementById('totalFavorites').textContent = Math.floor(Math.random() * 50);
+
+            // Render posts
+            dashboardList.innerHTML = myPosts.map(post => `
+                <div class="dashboard-item" data-id="${post.id}">
+                    <div class="post-image">
+                        <img src="${post.image}" alt="${post.title}">
+                    </div>
+                    <div class="post-info">
+                        <h3>${post.title}</h3>
+                        <div class="post-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> ${post.location}</span>
+                            <span><i class="fas fa-tag"></i> ${post.price.toLocaleString('vi-VN')}đ/tháng</span>
+                            <span><i class="fas fa-expand"></i> ${post.area}m²</span>
+                        </div>
+                        <div class="post-stats">
+                            <span><i class="fas fa-eye"></i> ${post.views || 0} lượt xem</span>
+                            <span><i class="fas fa-calendar"></i> ${new Date(post.date).toLocaleDateString('vi-VN')}</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn-edit" onclick="editPost(${post.id})">
+                            <i class="fas fa-edit"></i> Sửa
+                        </button>
+                        <button class="btn-delete" onclick="deletePost(${post.id})">
+                            <i class="fas fa-trash"></i> Xóa
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function editPost(id) {
+            alert('Chức năng sửa tin đang được phát triển!');
+        }
+
+        function deletePost(id) {
+            if (confirm('Bạn có chắc muốn xóa tin này?')) {
+                let myPosts = JSON.parse(localStorage.getItem('myPosts') || '[]');
+                myPosts = myPosts.filter(post => post.id !== id);
+                localStorage.setItem('myPosts', JSON.stringify(myPosts));
+                loadDashboard();
+            }
+        }
+
+        // Check if user is logged in before loading dashboard
+        if (!isLoggedIn()) {
+            alert('Bạn cần đăng nhập để truy cập quản lý tin!');
+            window.location.href = 'login.html';
+        } else {
+            // Load dashboard on page load
+            loadDashboard();
+        }
+    </script>
+</body>
+</html>
