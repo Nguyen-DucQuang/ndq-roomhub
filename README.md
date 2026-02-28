@@ -207,10 +207,10 @@ Dữ liệu được lưu trong `js/data.js` và có thể dễ dàng chỉnh s�
 
 ## 👨‍💻 Tác giả
 
-**NDQ Team**
+**Thông tin**
 - Website: https://nguyen-ducquang.github.io/newprofile/
 - Email: sssquang992@gmail.com
-- Facebook: ![Nguyễn Đức Quang](https://www.facebook.com/gnauq.notwang16)
+- Admin: ![Nguyễn Đức Quang](https://cntt.vhu.edu.vn/Resources/Images/SubDomain/cntt/2025/AI/518350474_779635804625509_6933299572716006187_n.jpg)
 
 ## 🙏 Lời cảm ơn
 
@@ -220,5 +220,5 @@ Dữ liệu được lưu trong `js/data.js` và có thể dễ dàng chỉnh s�
 
 ---
 
-<p align="center">Made with ❤️ by NDQ Team</p>
+<p align="center">Made with ❤️ by Nguyễn Đức Quang</p>
 <p align="center">© 2024 NDQ RoomHub. All rights reserved.</p>
