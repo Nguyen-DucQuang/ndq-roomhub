@@ -210,6 +210,7 @@ Dữ liệu được lưu trong `js/data.js` và có thể dễ dàng chỉnh s�
 **NDQ Team**
 - Website: https://nguyen-ducquang.github.io/newprofile/
 - Email: sssquang992@gmail.com
+- Facebook: ![Nguyễn Đức Quang](https://www.facebook.com/gnauq.notwang16)
 
 ## 🙏 Lời cảm ơn
 
